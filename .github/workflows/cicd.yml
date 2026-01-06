@@ -3,14 +3,20 @@ name: Deploy to ECR
 on:
  
   push:
-    branches: [ uat ]
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
 env:
-  ECR_REPOSITORY: frontend-nhk-psys-non-prod
-  EKS_CLUSTER_NAME: eks-nhk-psys-non-prod 
-  AWS_REGION: ap-southeast-7 
-  DEPLOYMENT_NAME: purchase-ui-deployment-uat 
+  ECR_REPOSITORY: nhkv2
+  EKS_CLUSTER_NAME: nhk-test-cluster
+  AWS_REGION: ap-southeast-1 
+  DEPLOYMENT_NAME: purchase-ui-deployment-uat
   CONTAINER_NAME: purchase-ui
-  NAMESPACE: uat 
+  NAMESPACE: appv2
 jobs:
   
   build:
@@ -27,38 +33,34 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: 'ap-southeast-7' 
+        role-to-assume: arn:aws:iam::891377305152:role/arm-admin-github
+        aws-region: ${{env.AWS_REGION}}
     
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
     
+    - name: Set image tag
+      run: echo "IMAGE_TAG=${GITHUB_SHA::7}" >> $GITHUB_ENV
+
     - name: Build Docker image and push to ECR
       if : true 
       id: build-image-and-push
-      env:
-        IMAGE_NAME: ${{ steps.commit.outputs.short }}
       run: |
-        docker build -t $ECR_REPOSITORY .
-        docker tag $ECR_REPOSITORY:latest ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:$IMAGE_NAME
-        docker tag $ECR_REPOSITORY:latest ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
-        docker push ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:$IMAGE_NAME
-        docker push ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+        IMAGE_URI=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:$IMAGE_TAG
+        docker build -t $IMAGE_URI .
+        docker push $IMAGE_URI
     
-    - name: Update kube config
-      id: update-kubeconfig
-      run: |
-        aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER_NAME }} --region ${{ env.AWS_REGION }}
-        aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION
-        aws s3 ls
+   # - name: Update kube config
+   #   id: update-kubeconfig
+   #   run: |
+   #     aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER_NAME }} --region ${{ env.AWS_REGION }}
+   #     aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION
+   #     aws s3 ls
     
-    - name: Update EKS deployment
-      run: |
-        kubectl config set-context --current --namespace=${{ env.NAMESPACE }}
-        kubectl set image deployment/${{ env.DEPLOYMENT_NAME }} ${{ env.CONTAINER_NAME }}=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.commit.outputs.short }} 
-        kubectl rollout status deployment/${{ env.DEPLOYMENT_NAME }}
-        kubectl get pods -l app=${{ env.DEPLOYMENT_NAME }} -o jsonpath='{.items[*].metadata.name}'
-
-
+   # - name: Update EKS deployment
+   #   run: |
+   #     kubectl config set-context --current --namespace=${{ env.NAMESPACE }}
+   #     kubectl set image deployment/${{ env.DEPLOYMENT_NAME }} ${{ env.CONTAINER_NAME }}=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.commit.outputs.short }} 
+   #     kubectl rollout status deployment/${{ env.DEPLOYMENT_NAME }}
+   #     kubectl get pods -l app=${{ env.DEPLOYMENT_NAME }} -o jsonpath='{.items[*].metadata.name}'
