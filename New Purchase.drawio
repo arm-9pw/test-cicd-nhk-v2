@@ -1,0 +1,65 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="24.7.13" pages="2">
+  <diagram name="Page-1" id="aEmKsgIAFIGGzsnG7MWc">
+    <mxGraphModel dx="1858" dy="491" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="XkGNOCnQi0ExN6PaMrdA-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="XkGNOCnQi0ExN6PaMrdA-1" target="XkGNOCnQi0ExN6PaMrdA-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XkGNOCnQi0ExN6PaMrdA-1" value="Requestor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="140" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XkGNOCnQi0ExN6PaMrdA-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="XkGNOCnQi0ExN6PaMrdA-2" target="XkGNOCnQi0ExN6PaMrdA-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XkGNOCnQi0ExN6PaMrdA-2" value="Purchase Requisition" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="150" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XkGNOCnQi0ExN6PaMrdA-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="XkGNOCnQi0ExN6PaMrdA-3" target="XkGNOCnQi0ExN6PaMrdA-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XkGNOCnQi0ExN6PaMrdA-3" value="Purchase Order" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="150" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XkGNOCnQi0ExN6PaMrdA-4" value="Good Receive" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="150" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XkGNOCnQi0ExN6PaMrdA-6" value="Approval" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="170" y="320" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XkGNOCnQi0ExN6PaMrdA-7" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;div style=&quot;font-family: &amp;quot;TH SarabunPSK&amp;quot;; font-size: 18.6667px; font-weight: 400; white-space-collapse: preserve; background-color: rgb(255, 255, 255);&quot; class=&quot;ewa-rteLine&quot;&gt;VP:  อนุมัติวงเงินมูลค่าเกิน 50,000 บาท ขึ้นไป&lt;/div&gt;&lt;div style=&quot;font-family: &amp;quot;TH SarabunPSK&amp;quot;; font-size: 18.6667px; font-weight: 400; white-space-collapse: preserve; background-color: rgb(255, 255, 255);&quot; class=&quot;ewa-rteLine&quot;&gt;SD:  อนุมัติวงเงินมูลค่าไม่เกิน 50,000 บาท&lt;/div&gt;&lt;div style=&quot;font-family: &amp;quot;TH SarabunPSK&amp;quot;; font-size: 18.6667px; font-weight: 400; white-space-collapse: preserve; background-color: rgb(255, 255, 255);&quot; class=&quot;ewa-rteLine&quot;&gt;FGM:  อนุมัติวงเงินมูลค่าไม่เกิน 50,000 บาท&lt;/div&gt;&lt;div style=&quot;font-family: &amp;quot;TH SarabunPSK&amp;quot;; font-size: 18.6667px; font-weight: 400; white-space-collapse: preserve; background-color: rgb(255, 255, 255);&quot; class=&quot;ewa-rteLine&quot;&gt;GM:  อนุมัติวงเงินมูลค่าไม่เกิน 50,000 บาท&lt;/div&gt;&lt;div style=&quot;font-family: &amp;quot;TH SarabunPSK&amp;quot;; font-size: 18.6667px; font-weight: 400; white-space-collapse: preserve; background-color: rgb(255, 255, 255);&quot; class=&quot;ewa-rteLine&quot;&gt;DGM:   อนุมัติวงเงินมูลค่าไม่เกิน10,000 บาท&lt;/div&gt;&lt;div style=&quot;font-family: &amp;quot;TH SarabunPSK&amp;quot;; font-size: 18.6667px; font-weight: 400; white-space-collapse: preserve; background-color: rgb(255, 255, 255);&quot; class=&quot;ewa-rteLine&quot;&gt;Section Manager: อนุมัติวงเงินมูลค่าไม่เกิน 5,000&lt;/div&gt;&lt;/h1&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="290" width="260" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="XkGNOCnQi0ExN6PaMrdA-8" value="Purchase" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="425" y="250" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XkGNOCnQi0ExN6PaMrdA-10" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;div style=&quot;font-family: &amp;quot;TH SarabunPSK&amp;quot;; font-size: 18.6667px; font-weight: 400; white-space-collapse: preserve; background-color: rgb(255, 255, 255);&quot; class=&quot;ewa-rteLine&quot;&gt;Purchase (IS)&lt;br&gt;Purchase (GA), (WG) Admin&lt;br/&gt;Purchase (Factory)&lt;br/&gt;Purchase HO&lt;br/&gt;Purchase (HR)&lt;/div&gt;&lt;/h1&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="390" y="350" width="260" height="150" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="oU8gWZ6ntQ1H1eQAcuHO" name="Page-2">
+    <mxGraphModel dx="1461" dy="712" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c2RhxkhTxeMXzkxHfPfF-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="JnUXQQCGU2n8Avgusug9-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JnUXQQCGU2n8Avgusug9-1" value="Requestor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="70" y="260" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="c2RhxkhTxeMXzkxHfPfF-1" value="Purchase Requisition" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="160" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="c2RhxkhTxeMXzkxHfPfF-4" value="Login" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="260" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

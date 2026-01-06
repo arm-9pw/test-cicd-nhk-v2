@@ -1,0 +1,341 @@
+.steps-container.small {
+  padding-bottom: 8px;
+  .step-box {
+    padding-left: 0;
+
+    .step-status {
+      p {
+        margin-top: 8px;
+        font-size: var(--fs-xs);
+      }
+    }
+
+    .step-description {
+      margin-top: 4px;
+      .step-name {
+        font-size: var(--fs-sm);
+      }
+      .step-position {
+        font-size: var(--fs-xs);
+        display: block;
+        margin-top: 0px;
+      }
+      .step-section {
+        margin-top: 0px;
+        font-size: var(--fs-xs);
+      }
+    }
+
+    .avatar-container {
+      .status-badge {
+        bottom: 2px;
+        right: 32%;
+        width: 25px;
+        height: 25px;
+      }
+
+      .connecting-line {
+        &:after {
+          width: calc(100%);
+        }
+      }
+    }
+  }
+}
+
+.steps-container {
+  display: flex;
+  overflow: auto;
+
+  .step-box {
+    padding-left: 32px;
+    min-width: 220px;
+    margin-top: 16px;
+
+    &:first-child {
+      margin-left: auto;
+    }
+
+    &:last-child {
+      margin-right: auto;
+    }
+
+    .step-status {
+      text-align: center;
+      p {
+        border: 2px solid var(--status-default);
+        margin-top: 16px;
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 20px;
+        text-align: center;
+        color: var(--status-default-text);
+        background: var(--status-default-bg);
+      }
+    }
+
+    .approver-dropdown {
+      margin-top: 4px;
+    }
+
+    .step-description {
+      margin-top: 8px;
+      text-align: center;
+      width: 100%;
+      max-width: 200px;
+      margin-left: auto;
+      margin-right: auto;
+
+      .step-name,
+      .step-position,
+      .step-section {
+        font-size: var(--fs-sm);
+        display: block;
+        line-height: var(--lh-tight);
+      }
+      .step-name {
+        font-size: var(--fs-base);
+      }
+
+      .delegator-name {
+        font-size: var(--fs-sm);
+        color: var(--fc-caption);
+      }
+
+      .step-position {
+        margin-top: 4px;
+        font-style: italic;
+      }
+
+      .step-section {
+        margin-top: 2px;
+      }
+    }
+
+    .delegate-container {
+      text-align: center;
+      .title {
+        font-size: var(--fs-sm);
+        color: var(--status-pending);
+        font-weight: bold;
+        margin: 2px 0;
+      }
+      .delegate-to {
+        display: block;
+        font-weight: bold;
+        line-height: 1;
+      }
+    }
+
+    .status-timestamp-container {
+      text-align: center;
+      .status-timestamp {
+        font-size: var(--fs-xs);
+      }
+
+      .status-approved {
+        color: var(--status-approved);
+      }
+
+      .status-rejected {
+        color: var(--status-rejected);
+      }
+    }
+
+    .avatar-container {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+
+      .connecting-line {
+        top: 50%;
+        width: 100%;
+        position: absolute;
+
+        &:after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          height: 4px;
+          width: calc(100% + 40px);
+          background: var(--status-default);
+        }
+      }
+
+      .avatar {
+        padding: 8px;
+        border: 3px solid var(--status-default);
+        background: var(--clr-white-100);
+      }
+
+      .status-badge {
+        position: absolute;
+        bottom: 2px;
+        right: 25%;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid var(--clr-white-100);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        background: var(--status-default);
+
+        .status-icon {
+          color: var(--clr-white);
+          font-size: 16px;
+          font-weight: bold;
+        }
+      }
+    }
+
+    /* APPROVED Status */
+    &[data-status='approved'] {
+      .step-status p {
+        border: 2px solid var(--status-approved);
+        color: var(--status-approved);
+        background: var(--status-approved-bg);
+      }
+
+      .avatar-container {
+        .connecting-line:after {
+          background: var(--status-approved);
+        }
+        .avatar {
+          border: 3px solid var(--status-approved);
+        }
+        .status-badge {
+          background: var(--status-approved);
+        }
+      }
+    }
+
+    /* DELEGATED Status */
+    &[data-status='delegated'] {
+      .step-status p {
+        border: 2px solid var(--status-pending);
+        color: var(--status-pending-text);
+        background: var(--status-pending-bg);
+        border-style: dashed;
+      }
+
+      .avatar-container {
+        .connecting-line:after {
+          background: var(--status-pending);
+        }
+        .avatar {
+          border: 3px dashed var(--status-pending);
+        }
+        .status-badge {
+          background: var(--status-pending);
+        }
+      }
+    }
+
+    /* PENDING Status */
+    &[data-status='pending'] {
+      .step-status p {
+        border: 2px solid var(--status-pending);
+        color: var(--status-pending-text);
+        background: var(--status-pending-bg);
+      }
+
+      .avatar-container {
+        .connecting-line:after {
+          background: var(--status-default);
+        }
+        .avatar {
+          border: 3px solid var(--status-default);
+          filter: grayscale(100%);
+        }
+        .status-badge {
+          background: var(--status-default);
+        }
+      }
+    }
+
+    /* ASSIGNED (Current Reviewer) Status */
+    &[data-status='assigned'] {
+      .step-status p {
+        border: 2px solid var(--status-assigned);
+        color: var(--status-assigned);
+        background: var(--status-assigned-bg);
+      }
+
+      .avatar-container {
+        .connecting-line:after {
+          background: var(--status-assigned);
+        }
+        .avatar {
+          border: 3px solid var(--status-assigned);
+          animation: pulse 2s infinite;
+        }
+        .status-badge {
+          background: var(--status-assigned);
+        }
+      }
+    }
+
+    /* REJECTED Status */
+    &[data-status='rejected'] {
+      .step-status p {
+        border: 2px solid var(--status-rejected);
+        color: var(--status-rejected);
+        background: var(--status-rejected-bg);
+      }
+
+      .avatar-container {
+        .connecting-line:after {
+          background: var(--status-rejected);
+        }
+        .avatar {
+          border: 3px solid var(--status-rejected);
+        }
+        .status-badge {
+          background: var(--status-rejected);
+        }
+      }
+    }
+
+    /* CANCELLED Status */
+    &[data-status='cancelled'] {
+      .step-status p {
+        border: 2px solid var(--status-cancelled);
+        color: var(--status-cancelled);
+        background: var(--status-cancelled-bg);
+      }
+
+      .avatar-container {
+        .connecting-line:after {
+          background: var(--status-cancelled);
+        }
+        .avatar {
+          border: 3px solid var(--status-cancelled);
+          filter: grayscale(100%) brightness(1);
+        }
+        .status-badge {
+          background: var(--status-cancelled);
+        }
+      }
+    }
+  }
+}
+
+/* Animation for current reviewer */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(24, 144, 255, 0.7);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 8px rgba(24, 144, 255, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(24, 144, 255, 0);
+  }
+}

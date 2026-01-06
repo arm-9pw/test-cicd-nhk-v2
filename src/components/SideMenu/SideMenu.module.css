@@ -1,0 +1,81 @@
+/* Both */
+.side-menu :global(.ant-menu-submenu-title) {
+  margin: 0;
+  width: 100%;
+}
+
+.side-menu :global(.ant-menu-item) :global(.anticon) {
+  color: var(--clr-primary);
+}
+
+/* Desktop */
+.side-menu:global(.ant-menu-inline)
+  :global(.ant-menu-submenu-title)[aria-expanded='true'] {
+  background-color: var(--clr-primary);
+  color: var(--clr-neutral-light);
+  border-right: 4px solid var(--clr-primary);
+}
+
+.side-menu:global(.ant-menu-inline)
+  :global(.ant-menu-submenu-title)[aria-expanded='false']:hover {
+  color: var(--clr-neutral-light);
+}
+
+.side-menu:global(.ant-menu-inline)
+  :global(.ant-menu-submenu-title)[aria-expanded='false']
+  :global(.anticon) {
+  color: var(--clr-primary);
+}
+
+.side-menu:global(.ant-menu-inline) :global(.ant-menu-item-selected) {
+  border-right: 4px solid var(--clr-primary);
+}
+
+.side-menu
+  li:global(.ant-menu-item:not(.ant-menu-item-selected)):hover
+  :global(.anticon.ant-menu-item-icon) {
+  color: var(--clr-neutral-light) !important;
+}
+
+/* Mobile */
+.side-menu:global(.ant-menu-vertical) :global(.ant-menu-submenu-selected),
+.side-menu:global(.ant-menu-vertical) :global(.ant-menu-item-selected) {
+  background-color: var(--clr-primary);
+}
+
+.side-menu:global(.ant-menu-vertical)
+  :global(.ant-menu-submenu-selected)
+  > :global(.ant-menu-submenu-title)
+  :global(.anticon),
+.side-menu:global(.ant-menu-vertical)
+  :global(.ant-menu-item-selected)
+  :global(.anticon) {
+  color: var(--clr-neutral-light) !important;
+}
+
+.side-menu:global(.ant-menu-vertical)
+  :global(.ant-menu-submenu-selected)
+  > :global(.ant-menu-submenu-title):hover {
+  color: var(--clr-neutral-light);
+}
+
+.side-menu
+  :global(.ant-menu-inline-collapsed)
+  > :global(.ant-menu-submenu)
+  > :global(.ant-menu-submenu-title)
+  :global(span.anticon.anticon-pie-chart.ant-menu-item-icon) {
+  color: var(--clr-neutral-light) !important;
+}
+
+.side-menu
+  :global(.ant-menu-submenu-title):hover
+  :global(.anticon.ant-menu-item-icon) {
+  color: var(--clr-neutral-light);
+}
+
+:global(.ant-menu-submenu-popup)
+  :global(.ant-menu.ant-menu-sub.ant-menu-vertical)
+  :global(.ant-menu-item.ant-menu-item-active)
+  :global(.anticon.ant-menu-item-icon) {
+  color: var(--clr-neutral-light) !important;
+}

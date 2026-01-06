@@ -1,0 +1,39 @@
+.banner-container {
+  width: 100%;
+  margin-bottom: var(--gap);
+}
+
+.warning-banner {
+  border-radius: var(--border-radius);
+}
+
+.warning-banner :global(.ant-alert-message) {
+  width: 100%;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gutter);
+  flex-wrap: wrap;
+}
+
+.banner-message {
+  font-weight: 500;
+  color: var(--status-pending-text);
+}
+
+.banner-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+}
+
+.dismiss-button {
+  color: var(--status-pending-text);
+}
+
+.dismiss-button:hover {
+  color: var(--clr-black);
+}

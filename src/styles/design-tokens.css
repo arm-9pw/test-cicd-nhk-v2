@@ -1,0 +1,193 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;700&display=swap'); */
+
+@font-face {
+  font-family: 'Sarabun';
+  src: url('/src/fonts/Sarabun-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sarabun';
+  src: url('/src/fonts/Sarabun-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sarabun';
+  src: url('/src/fonts/Sarabun-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+:root {
+  /* ------------------------------------ 
+    Color
+  -------------------------------------- */
+  /* theme colors v.1 */
+  --clr-primary: #1d336c;
+  --clr-secondary: #2e53af;
+  --clr-neutral-light: #f5f5f7;
+  --clr-neutral-dark: #222222;
+  --clr-border: var(--clr-black-200);
+
+  /* Color v.0 */
+  --clr-red: #ef4128; /* --clr-red-600 */
+  --clr-nhk-red: rgba(238, 59, 57, 255);
+  --clr-green: #00a45d; /* --clr-green-600 */
+  --clr-oil-green: #668c84; /* --clr-oil-green-600 */
+  --clr-blue: #4374f8; /* --clr-blue-600 */
+  --clr-black: #030b16; /* --clr-black-600 */
+  --clr-white: #fefefe; /* white-400, white-500, white-600 */
+  --clr-yellow: #fac858;
+
+  /* Secondary Color */
+  --clr-red-100: #fdf3f2;
+  --clr-red-200: #fce8e7;
+  --clr-red-300: #f9cfcd;
+  --clr-red-400: #f6b2ae;
+  --clr-red-500: #f39089;
+  /* --clr-red-600: --clr-red */
+  --clr-red-700: #e43e26;
+  --clr-red-800: #cc3722;
+  --clr-red-900: #b1301e;
+  --clr-red-1000: #902718;
+  --clr-red-1100: #661c11;
+
+  --clr-green-100: #f2f7f4;
+  --clr-green-200: #e7f1ea;
+  --clr-green-300: #cbe2d3;
+  --clr-green-400: #acd2b9;
+  --clr-green-500: #85c19b;
+  /* --clr-green-600: --clr-green */
+  --clr-green-700: #009c59;
+  --clr-green-800: #008c4f;
+  --clr-green-900: #007945;
+  --clr-green-1000: #006338;
+  --clr-green-1100: #004628;
+
+  --clr-oil-green-100: #f4f6f5;
+  --clr-oil-green-200: #ebeeed;
+  --clr-oil-green-300: #d4dcda;
+  --clr-oil-green-400: #bcc9c6;
+  --clr-oil-green-500: #9fb3ae;
+  /* --clr-oil-green-600: --clr-oil-green */
+  --clr-oil-green-700: #61867e;
+  --clr-oil-green-800: #577771;
+  --clr-oil-green-900: #4b6762;
+  --clr-oil-green-1000: #3e5450;
+  --clr-oil-green-1100: #2c3c38;
+
+  --clr-blue-100: #f3f5fe;
+  --clr-blue-200: #e8ecfe;
+  --clr-blue-300: #cfd7fc;
+  --clr-blue-400: #b3c0fb;
+  --clr-blue-500: #91a6fa;
+  /* --clr-blue-600: --clr-blue */
+  --clr-blue-700: #406fed;
+  --clr-blue-800: #3963d4;
+  --clr-blue-900: #3256b7;
+  --clr-blue-1000: #284696;
+  --clr-blue-1100: #1d316a;
+
+  --clr-black-100: #f2f2f2;
+  --clr-black-200: #e7e7e7;
+  --clr-black-300: #cbcbcc;
+  --clr-black-400: #acacad;
+  --clr-black-500: #858586;
+  /* --clr-black-600: --clr-black */
+  --clr-black-700: #030a15;
+  --clr-black-800: #030913;
+  --clr-black-900: #020810;
+  --clr-black-1000: #02070d;
+  --clr-black-1100: #010509;
+
+  --clr-white-100: #ffffff; /* white-100, white-200, white-300 */
+  --clr-white-700: #f2f2f2;
+  --clr-white-800: #d9d9d9;
+  --clr-white-900: #bcbcbc;
+  --clr-white-1000: #999999;
+  --clr-white-1100: #6c6c6c;
+
+  /* ------------------------------------ 
+    Status Colors
+  -------------------------------------- */
+  --status-approved: #52c41a;
+  --status-approved-bg: #f6ffed;
+  
+  --status-pending: #faad14;
+  --status-pending-text: #d48806;
+  --status-pending-bg: #fffbe6;
+  
+  --status-assigned: #1890ff;
+  --status-assigned-bg: #e6f7ff;
+  
+  --status-rejected: #ff4d4f;
+  --status-rejected-bg: #fff2f0;
+  
+  --status-cancelled: #8c8c8c;
+  --status-cancelled-bg: #f5f5f5;
+  
+  --status-delegated: #722ed1;
+  --status-delegated-bg: #f9f0ff;
+  
+  --status-default: #d9d9d9;
+  --status-default-text: #8c8c8c;
+  --status-default-bg: #fafafa;
+  
+  /* ------------------------------------ 
+    PDF Color
+  -------------------------------------- */
+  --clr-pdf-blue: #45a3ff;
+
+  /* ------------------------------------ 
+    Font
+  -------------------------------------- */
+  --ff-serif: 'Sarabun', sans-serif;
+
+  /* Font Sizes - Using rem for better accessibility */
+  --fs-xs: 0.75rem;      /* 12px */
+  --fs-sm: 0.875rem;     /* 14px */
+  --fs-base: 1rem;       /* 16px - base size */
+  --fs-lg: 1.125rem;     /* 18px */
+  --fs-xl: 1.25rem;      /* 20px */
+  --fs-2xl: 1.5rem;      /* 24px */
+  --fs-3xl: 1.875rem;    /* 30px */
+  --fs-4xl: 2.25rem;     /* 36px */
+
+  /* Legacy token - kept for backward compatibility */
+  --fs-primary: 16px;
+
+  /* Line Heights */
+  --lh-tight: 1.25;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.75;
+
+  --fc-primary: var(--clr-black);
+  --fc-secondary: var(--clr-white);
+  --fc-tertiary: var(--clr-green);
+  --fc-quaternary: var(--clr-oil-green);
+  --fc-caption: var(--clr-black-500);
+  --fc-heading: var(--clr-black-800);
+  --fc-link: var(--clr-blue);
+  --fc-placeholder: var(--clr-black-400);
+  --fc-error: var(--clr-red);
+
+  /* ------------------------------------ 
+    Utility
+  -------------------------------------- */
+  --border-radius: 10px;
+  --box-shadow: 0px 2px 8px rgba(3, 11, 22, 0.15);
+  --gutter: 16px;
+  --gap: 8px;
+
+  /* ------------------------------------ 
+    Breakpoints
+    Please refer to breakpoints.module.css file for media queries.
+    - ref: https://ant.design/docs/react/customize-theme
+    - ref: https://getbootstrap.com/docs/4.0/layout/overview/#responsive-breakpoints
+
+    **If you want to change the breakpoints, you also need to customize antd breakpoints in main.tsx.
+  -------------------------------------- */
+}

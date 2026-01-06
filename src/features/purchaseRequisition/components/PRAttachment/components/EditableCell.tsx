@@ -1,0 +1,145 @@
+import { useMemo, useState } from 'react'
+
+import { UploadOutlined } from '@ant-design/icons'
+import { Button, Form, Input, Upload } from 'antd'
+
+import { useGetDocumentTypesQuery } from 'api/masterApi'
+import { useFileValidation } from 'hooks/useFileValidation'
+
+import CustomDatePicker from 'components/CustomDatePicker'
+import DocumentTypeDropdown from 'components/DocumentTypeDropdown'
+import { PRAttachmentDataType } from 'features/purchaseRequisition/PurchaseRequisitionPage.types'
+
+import { formatDisplayDate } from 'utils/dateHelpers'
+import { transformArrayToObject } from 'utils/generalHelpers'
+
+const EditableCell: React.FC<{
+  editing: boolean
+  dataIndex: string
+  title: React.ReactNode
+  inputType: 'text' | 'select' | 'date' | 'upload'
+  record: PRAttachmentDataType
+  index: number
+  children: React.ReactNode
+}> = ({ editing, dataIndex, title, inputType, record, children, ...restProps }) => {
+  const { validateFile, fileUploadHint } = useFileValidation()
+  const [tempUploadingFileName, setTempUploadingFileName] = useState<string>('')
+  const { data = [] } = useGetDocumentTypesQuery({ domain: 'PR' })
+  const documentTypelabel = useMemo(() => transformArrayToObject(data), [data])
+
+  const getEditFileName = (record: PRAttachmentDataType) => {
+    if (record.fileName && tempUploadingFileName) {
+      // NOTE: ถ้ามีการ upload file ใหม่ก็ไม่ต้องแสดงชื่อไฟล์เก่าแล้ว
+      return ''
+    } // NOTE: กรณีที่ Edit ให้แสดงชื่อไฟล์ปัจจุบัน
+    return record.fileName
+  }
+
+  let inputNode = children
+  const isAdding = record?.key === 'new'
+  const formItemName = isAdding ? `newItem-${dataIndex}` : dataIndex
+
+  if (!editing && dataIndex === 'documentType') {
+    inputNode = <span>{documentTypelabel[record.documentType]}</span>
+  }
+
+  if (dataIndex === 'documentDate' && !editing && !isAdding) {
+    inputNode = <span>{formatDisplayDate(record.documentDate)}</span>
+  }
+
+  if (editing || isAdding) {
+    switch (inputType) {
+      case 'select':
+        inputNode = (
+          <Form.Item
+            name={formItemName}
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: `Please select ${typeof title === 'string' ? title : 'this field'}`,
+              },
+            ]}
+          >
+            <DocumentTypeDropdown domain="PR" />
+          </Form.Item>
+        )
+        break
+      case 'date':
+        inputNode = (
+          <Form.Item
+            name={formItemName}
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: `Please select ${typeof title === 'string' ? title : 'this field'}`,
+              },
+            ]}
+          >
+            <CustomDatePicker style={{ width: '100%' }} />
+          </Form.Item>
+        )
+        break
+      case 'upload':
+        inputNode = (
+          <>
+            <Form.Item
+              name={formItemName}
+              style={{ margin: 0 }}
+              valuePropName={formItemName}
+              rules={[
+                {
+                  required: true,
+                  message: `Please upload a file`,
+                },
+              ]}
+            >
+              <Upload
+                maxCount={1}
+                beforeUpload={(file) => {
+                  const result = validateFile(file)
+
+                  if (result !== Upload.LIST_IGNORE) {
+                    setTempUploadingFileName(file.name)
+                  }
+
+                  return result
+                }}
+                showUploadList={{
+                  showRemoveIcon: false,
+                }}
+              >
+                <Button color="primary" variant="outlined" size="small" icon={<UploadOutlined />}>
+                  Upload New File
+                </Button>
+                <p style={{ marginTop: 0, fontSize: 10 }}>{fileUploadHint}</p>
+              </Upload>
+            </Form.Item>
+            {getEditFileName(record)}
+          </>
+        )
+        break
+      default:
+        inputNode = (
+          <Form.Item
+            name={formItemName}
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: `Please input ${typeof title === 'string' ? title : 'this field'}`,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+        )
+        break
+    }
+  }
+
+  return <td {...restProps}>{inputNode}</td>
+}
+
+export default EditableCell

@@ -1,0 +1,35 @@
+.approval-flow-container {
+  margin-top: 24px;
+  background: var(--clr-white-700);
+  padding: 16px;
+  border-radius: 8px;
+
+  .approval-flow-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  p {
+    margin: 0;
+    font-weight: bold;
+  }
+
+  .loading-container,
+  .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    padding: 16px;
+
+    p {
+      color: var(--clr-red);
+      font-weight: normal;
+    }
+  }
+
+  .approval-flow-content {
+    margin-top: 16px;
+  }
+}

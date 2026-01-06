@@ -1,0 +1,87 @@
+.decision-group {
+  width: 100%;
+  margin-bottom: 16px;
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+
+  /* Base styles for all radio buttons */
+  & :global(.ant-radio-wrapper) {
+    flex: 1;
+    border: 1px solid #e8e8e8 !important;
+    padding: 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    /* Radio button inner styling */
+    & :global(.ant-radio) :global(.ant-radio-inner) {
+      width: 20px;
+      height: 20px;
+      border-width: 2px;
+      transition: all 0.3s ease;
+
+      &::after {
+        width: 8px;
+        height: 8px;
+        margin-top: -4px;
+        margin-left: -4px;
+        transition: all 0.3s ease;
+      }
+    }
+  }
+
+  /* Approve radio button */
+  & :global(.ant-radio-wrapper:first-child) {
+    &:hover {
+      border-color: var(--status-approved) !important;
+      box-shadow: 0 2px 4px rgba(82, 196, 26, 0.2);
+      transform: translateY(-1px);
+
+      :global(.ant-radio-inner) {
+        border-color: var(--status-approved) !important;
+        background-color: var(--status-approved);
+      }
+    }
+
+    /* Checked state for Approve */
+    &:global(.ant-radio-wrapper-checked) {
+      border-color: var(--status-approved) !important;
+      background-color: var(--status-approved-bg);
+      box-shadow: 0 2px 8px rgba(82, 196, 26, 0.2);
+
+      /* Custom radio button when checked */
+      & :global(.ant-radio-checked) :global(.ant-radio-inner) {
+        border-color: var(--status-approved) !important;
+        background-color: var(--status-approved);
+      }
+    }
+  }
+
+  /* Reject radio button */
+  & :global(.ant-radio-wrapper:last-child) {
+    &:hover {
+      border-color: var(--status-rejected) !important;
+      box-shadow: 0 2px 4px rgba(255, 77, 79, 0.2);
+      transform: translateY(-1px);
+
+      :global(.ant-radio-inner) {
+        border-color: var(--status-rejected) !important;
+        background-color: var(--status-rejected);
+      }
+    }
+
+    /* Checked state for Reject */
+    &:global(.ant-radio-wrapper-checked) {
+      border-color: var(--status-rejected) !important;
+      background-color: var(--status-rejected-bg);
+      box-shadow: 0 2px 8px rgba(255, 77, 79, 0.2);
+
+      /* Custom radio button when checked */
+      & :global(.ant-radio-checked) :global(.ant-radio-inner) {
+        border-color: var(--status-rejected) !important;
+        background-color: var(--status-rejected);
+      }
+    }
+  }
+}

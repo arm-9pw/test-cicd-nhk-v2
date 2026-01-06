@@ -1,0 +1,4 @@
+.error-modal :global(.ant-modal-header) :global(.ant-modal-title) {
+  color: var(--clr-primary);
+  font-size: 1.4rem;
+}

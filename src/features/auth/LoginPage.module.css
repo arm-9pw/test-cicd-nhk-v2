@@ -1,0 +1,17 @@
+.login-page {
+  background: var(--clr-black-100);
+  width: 100vw;
+  height: 100vh;
+}
+
+.login-box {
+  padding: var(--gutter);
+  background: var(--clr-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  max-width: 450px;
+  min-height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

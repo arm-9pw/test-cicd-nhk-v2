@@ -1,0 +1,16 @@
+.card-box {
+  box-shadow: var(--box-shadow);
+}
+
+.title {
+  .title-pre-icon {
+    display: inline-block;
+    margin-right: 8px;
+    color: var(--clr-primary);
+  }
+  .title-post-icon {
+    display: inline-block;
+    margin-left: 8px;
+    color: var(--clr-primary);
+  }
+}

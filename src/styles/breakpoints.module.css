@@ -1,0 +1,24 @@
+@value --screen-xs: 480px;
+@value --screen-sm: 576px;
+@value --screen-md: 768px;
+@value --screen-lg: 992px;
+@value --screen-xl: 1200px;
+@value --screen-xxl: 1600px;
+
+@custom-media --xs-viewport (max-width: --screen-xs);
+@custom-media --sm-viewport (max-width: --screen-sm);
+@custom-media --md-viewport (max-width: --screen-md);
+@custom-media --lg-viewport (max-width: --screen-lg);
+@custom-media --xl-viewport (max-width: --screen-xl);
+@custom-media --xxl-viewport (max-width: --screen-xxl);
+
+/* 
+📝 -- How to use -- 📝
+1. Import the breakpoints.module.css file in the component's CSS file.
+Example: @import 'styles/breakpoints.module.css';
+
+2. Use the custom media queries in the component's CSS file.
+Example: @media (--xs-viewport) {
+  ... any css code here ...
+}
+*/

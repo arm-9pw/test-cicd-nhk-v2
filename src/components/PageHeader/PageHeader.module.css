@@ -1,0 +1,23 @@
+@import 'styles/breakpoints.module.css';
+
+.page-header {
+  padding: 16px 24px;
+  background: var(--clr-white);
+  box-shadow: var(--box-shadow);
+  border-radius: 0px 0px 10px 10px;
+  border-bottom: 1px solid var(--clr-white-800);
+
+  background-image: url('../../assets/people_ideas.png'); /* The image used */
+  background-position: 90% 0; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: contain; /* Resize the background image to cover the entire container */
+
+  h1 {
+    margin-top: 0;
+    color: var(--clr-primary);
+  }
+
+  @media (--md-viewport) {
+    background-image: none;
+  }
+}

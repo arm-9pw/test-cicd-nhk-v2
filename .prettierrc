@@ -1,0 +1,25 @@
+{
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "trailingComma": "all",
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "printWidth": 100,
+  "bracketSpacing": true,
+  "endOfLine": "lf",
+  "importOrder": [
+    "react|^redux|^react-router-dom",
+    "^@|^antd|^prop-types|^dayjs|^file",
+    "style|^asset|^.*\\.css$|^.*\\.svg$",
+    "^service",
+    "^hooks|^api|^hocs|^app",
+    "^component|^feature|^page|^layout",
+    "^constant|^route|^util|^config",
+    "^fonts|^pdf|^mocks",
+    "^../",
+    "^./",
+    "^."
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}

@@ -1,0 +1,72 @@
+name: Deploy to ECR
+
+on:
+ 
+  push:
+    branches: [ prod ]
+env:
+  ECR_REPOSITORY: frontend-nhk-psys-prod
+  EKS_CLUSTER_NAME: eks-nhk-psys-prod 
+  AWS_REGION: ap-southeast-7 
+  DEPLOYMENT_NAME: purchase-ui-deployment-prod
+  CONTAINER_NAME: purchase-ui
+  NAMESPACE: prod 
+jobs:
+  
+  build:
+    name: Build and Deployment
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set short git commit SHA
+      id: commit
+      uses: prompt/actions-commit-hash@v2
+
+    - name: Check out code
+      uses: actions/checkout@v2
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: 'ap-southeast-7' 
+    
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+    
+    - name: Build Docker image and push to ECR
+      if : true 
+      id: build-image-and-push
+      env:
+        IMAGE_NAME: ${{ steps.commit.outputs.short }}
+        API_BASE_URL: "https://epurth-api.nhkspg.co.th" 
+        KEYCLOAK_URL: "https://epuraccount.nhkspg.co.th"
+        KEYCLOAK_REALM: "StandardProject"
+        KEYCLOAK_CLIENT_ID: "nhk-epurchase-bff"
+      run: |
+        # docker build -t $ECR_REPOSITORY .
+        docker build -t $ECR_REPOSITORY \
+          --build-arg API_BASE_URL=$API_BASE_URL \
+          --build-arg KEYCLOAK_URL=$KEYCLOAK_URL \
+          --build-arg KEYCLOAK_REALM=$KEYCLOAK_REALM \
+          --build-arg KEYCLOAK_CLIENT_ID=$KEYCLOAK_CLIENT_ID \
+          .
+        docker tag $ECR_REPOSITORY:latest ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:$IMAGE_NAME
+        docker tag $ECR_REPOSITORY:latest ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+        docker push ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:$IMAGE_NAME
+        docker push ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+    
+    - name: Update kube config
+      id: update-kubeconfig
+      run: |
+        aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER_NAME }} --region ${{ env.AWS_REGION }}
+        aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION
+        aws s3 ls
+    
+    - name: Update EKS deployment
+      run: |
+        kubectl config set-context --current --namespace=${{ env.NAMESPACE }}
+        kubectl set image deployment/${{ env.DEPLOYMENT_NAME }} ${{ env.CONTAINER_NAME }}=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.commit.outputs.short }} 
+        kubectl rollout status deployment/${{ env.DEPLOYMENT_NAME }}
+        kubectl get pods -l app=${{ env.DEPLOYMENT_NAME }} -o jsonpath='{.items[*].metadata.name}'

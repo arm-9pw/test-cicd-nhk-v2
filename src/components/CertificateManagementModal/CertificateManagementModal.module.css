@@ -1,0 +1,44 @@
+.certificate-modal :global(.ant-modal-header) :global(.ant-modal-title) {
+  color: var(--clr-primary);
+  font-size: 1.2rem;
+}
+
+.modal-title {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+}
+
+.modal-content {
+  padding: var(--gutter) 0;
+}
+
+.description {
+  font-size: var(--fs-base);
+  color: var(--clr-black-500);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--gutter);
+}
+
+.button-group {
+  display: flex;
+  gap: var(--gap);
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.success-icon {
+  color: var(--clr-green);
+}
+
+.certificate-modal :global(.ant-result) {
+  padding: var(--gutter) 0;
+}
+
+.certificate-modal :global(.ant-result-title) {
+  color: var(--clr-green);
+}
+
+.certificate-modal :global(.ant-result-subtitle) {
+  color: var(--clr-black-500);
+}

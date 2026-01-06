@@ -1,0 +1,17 @@
+.myApprovals-tabs :global(.ant-tabs-nav) {
+  margin-bottom: 0px;
+}
+
+.myApprovals-tabs :global(.ant-tabs-content-holder) {
+  padding: 16px;
+  background-color: var(--clr-white);
+  margin-left: 1px;
+  border-radius: 0 8px 8px 8px;
+}
+
+.count-badge {
+  margin-left: 8px;
+  color: var(--clr-red);
+  font-weight: bold;
+  font-size: 18px;
+}

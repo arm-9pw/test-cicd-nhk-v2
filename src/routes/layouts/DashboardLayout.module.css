@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--clr-white-800);
+  justify-content: space-between;
+}
+
+.header :global(.notification-bell) {
+  /* display: inline-block; */
+  display: block;
+  /* padding-top: 10px; */
+  color: var(--fc-heading);
+}

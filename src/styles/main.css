@@ -1,0 +1,28 @@
+@import url(reset.css);
+@import url(design-tokens.css);
+@import url(antd-overrides.css);
+
+body {
+  font-family: var(--ff-serif);
+  font-size: var(--fs-primary);
+  background-color: var(--clr-white);
+  margin: 0;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* SHARED */
+.parent-row {
+  background-color: var(--clr-neutral-light);
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.hover-underline:hover {
+  text-decoration: underline;
+}
