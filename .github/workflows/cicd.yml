@@ -14,9 +14,9 @@ env:
   ECR_REPOSITORY: nhkv2
   EKS_CLUSTER_NAME: nhk-test-cluster
   AWS_REGION: ap-southeast-1 
-  DEPLOYMENT_NAME: purchase-ui-deployment-uat
-  CONTAINER_NAME: purchase-ui
-  NAMESPACE: appv2
+  DEPLOYMENT_NAME: purchase-ui-deployment-uat-v2
+  CONTAINER_NAME: purchase-ui-v2
+  NAMESPACE: uat
 jobs:
   
   build:
