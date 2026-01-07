@@ -51,16 +51,16 @@ jobs:
         docker build -t $IMAGE_URI .
         docker push $IMAGE_URI
     
-   # - name: Update kube config
-   #   id: update-kubeconfig
-   #   run: |
-   #     aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER_NAME }} --region ${{ env.AWS_REGION }}
-   #     aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION
-   #     aws s3 ls
+    - name: Update kube config
+      id: update-kubeconfig
+      run: |
+        aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER_NAME }} --region ${{ env.AWS_REGION }}
+        aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION
+        aws s3 ls
     
-   # - name: Update EKS deployment
-   #   run: |
-   #     kubectl config set-context --current --namespace=${{ env.NAMESPACE }}
-   #     kubectl set image deployment/${{ env.DEPLOYMENT_NAME }} ${{ env.CONTAINER_NAME }}=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.commit.outputs.short }} 
-   #     kubectl rollout status deployment/${{ env.DEPLOYMENT_NAME }}
-   #     kubectl get pods -l app=${{ env.DEPLOYMENT_NAME }} -o jsonpath='{.items[*].metadata.name}'
+    - name: Update EKS deployment
+      run: |
+        kubectl config set-context --current --namespace=${{ env.NAMESPACE }}
+        kubectl set image deployment/${{ env.DEPLOYMENT_NAME }} ${{ env.CONTAINER_NAME }}=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.commit.outputs.short }} 
+        kubectl rollout status deployment/${{ env.DEPLOYMENT_NAME }}
+        kubectl get pods -l app=${{ env.DEPLOYMENT_NAME }} -o jsonpath='{.items[*].metadata.name}'
